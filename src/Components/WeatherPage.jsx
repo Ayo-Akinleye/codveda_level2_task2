@@ -8,7 +8,7 @@ const WeatherPage = () => {
                 className='h-full flex justify-center items-center w-full bg-gray-900 bg-cover bg-center bg-no-repeat'
                 style={{ backgroundImage: `url(${BackgroundImg})` }}
             >
-                <div className='flex flex-col items-center bg-gray-200 p-15 rounded-lg gap-8'>
+                <div className='flex flex-col items-center bg-white/30 backdrop-blur-md p-15 rounded-lg gap-8'>
                     <p className='font-semibold text-2xl'>LAGOS, NIGERIA</p>
 
                     <div className='grid md:grid-cols-2 justify-center items-center gap-6'>
