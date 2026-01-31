@@ -1,13 +1,16 @@
 import BackgroundImg from '../assets/bg-image-1.jpg'
 import sunImg from '../assets/sun-image.png'
+import SearchInput from './SearchInput'
 
 const WeatherPage = () => {
     return (
         <section className='h-screen'>
             <div
-                className='h-full flex justify-center items-center w-full bg-gray-900 bg-cover bg-center bg-no-repeat'
+                className='h-full flex flex-col p-5 gap-7 items-center w-full bg-gray-900 bg-cover bg-center bg-no-repeat'
                 style={{ backgroundImage: `url(${BackgroundImg})` }}
             >
+                <SearchInput />
+
                 <div className='flex flex-col items-center bg-white/30 backdrop-blur-md p-15 rounded-lg gap-8'>
                     <p className='font-semibold text-2xl'>LAGOS, NIGERIA</p>
 
