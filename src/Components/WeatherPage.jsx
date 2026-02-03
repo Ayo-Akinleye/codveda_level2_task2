@@ -1,31 +1,57 @@
 import BackgroundImg from '../assets/bg-image-1.jpg'
 import sunImg from '../assets/sun-image.png'
 import SearchInput from './SearchInput'
+import DisplayDate from './DisplayDate';
+import { MapPin, Wind, Droplets } from 'lucide-react';
 
 const WeatherPage = () => {
     return (
         <section className='h-screen'>
             <div
-                className='h-full flex flex-col p-5 gap-7 items-center w-full bg-gray-900 bg-cover bg-center bg-no-repeat'
+                className='h-full flex flex-col p-5 items-center bg-gray-900 bg-cover bg-center bg-no-repeat'
                 style={{ backgroundImage: `url(${BackgroundImg})` }}
             >
                 <SearchInput />
+                .
+                {/* container div */}
+                <div className='flex flex-col mt-6 h-[90%] w-[90%] md:w-[45%] bg-white/30 backdrop-blur-md p-8 rounded-lg text-gray-600 gap-6'>
 
-                <div className='flex flex-col items-center bg-white/30 backdrop-blur-md p-15 rounded-lg gap-8'>
-                    <p className='font-semibold text-2xl'>LAGOS, NIGERIA</p>
+                    {/* first div: Location & date */}
+                    <div>
+                        <p className='font-semibold text-xl flex items-center gap-1 '>
+                            <MapPin />
+                            LAGOS, NIGERIA
+                        </p>
+                        <DisplayDate />
+                    </div>
 
-                    <div className='grid md:grid-cols-2 justify-center items-center gap-6'>
+                    {/* Second div: Image and weather details */}
+                    <div className='grid w-full justify-center items-center md:grid-cols-2 md:justify-between gap-6'>
 
                         <img src={sunImg} alt="Illustration of the sun" className='h-40 w-40' />
 
-                        <div className='flex flex-col items-center gap-2'>
-                            <h2 className='font-bold text-3xl'>0°C</h2>
+                        {/* Weather details */}
+                        <div className='flex flex-col items-center gap-2 text-white'>
+                            <h2 className='font-bold text-4xl'>0°C</h2>
                             <p className='text-2xl font-semibold'>Sunny</p>
                         </div>
 
                     </div>
 
-                    <h3 className='font-semibold text-xl'>30th, January 2026</h3>
+                    {/* 3rd Div: Extra weather information */}
+                    <div className='col-span-1 md:col-span-2 flex w-full items-center justify-between mt-10 text-white'>
+                        <div>
+                            <Droplets />
+                            <p>20%</p>
+                            <p>Humidity</p>
+                        </div>
+                        <div>
+                            <Wind />
+                            <p>2 km/h</p>
+                            <p>Wind</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
