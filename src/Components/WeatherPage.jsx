@@ -7,28 +7,31 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const WeatherPage = () => {
-    const [data, setData] = useState(null)
-    useEffect(() => {
-        const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Jalingo&appid=700d25e4ad4d6a082e14c30f3ed48ce9&units=metric';
+    const [data, setData] = useState(null);
+
+    const fetchWeather = (cityName) => {
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=700d25e4ad4d6a082e14c30f3ed48ce9&units=metric`;
         axios.get(apiUrl)
             .then(res => {
                 console.log(res.data)
                 setData(res.data)
             })
             .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        fetchWeather('London')
     }, [])
-    // Loading check
-    // if (!data) {
-    //     return <div>Loading...</div>
-    // }
+    // London weather data loads automatically before user search. useEffect fetchs the weather data when the component mounts(first loads)
+
     return (
         <section className='h-screen'>
             <div
                 className='h-full flex flex-col p-5 items-center bg-gray-900 bg-cover bg-center bg-no-repeat'
                 style={{ backgroundImage: `url(${BackgroundImg})` }}
             >
-                <SearchInput />
-                .
+                <SearchInput getWeather={fetchWeather} />
+
                 {/* container div */}
                 <div className='flex flex-col mt-6 h-[90%] w-[90%] md:w-[40%] bg-white/30 backdrop-blur-md p-8 rounded-lg text-gray-600 gap-6'>
 
