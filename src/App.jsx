@@ -1,4 +1,4 @@
-import WeatherPage from "./Components/WeatherPage"
+import WeatherPage from "./Pages/WeatherPage"
 
 const App = () => {
   return (

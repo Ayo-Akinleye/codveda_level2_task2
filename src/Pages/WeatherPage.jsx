@@ -1,10 +1,10 @@
 import BackgroundImg from '../assets/bg-image-1.jpg'
-import sunImg from '../assets/sun-image.png'
-import SearchInput from './SearchInput'
-import DisplayDate from './DisplayDate';
+import SearchInput from '../Components/SearchInput'
+import DisplayDate from '../Components/DisplayDate';
 import { MapPin, Wind, Droplets } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import WeatherImage from '../Components/WeatherImage';
 
 const WeatherPage = () => {
     const [data, setData] = useState(null);
@@ -47,7 +47,7 @@ const WeatherPage = () => {
                     {/* Second div: Image and weather details */}
                     <div className='grid w-full justify-center items-center md:grid-cols-2 md:justify-between gap-6'>
 
-                        <img src={sunImg} alt="Illustration of the sun" className='h-40 w-40' />
+                        <WeatherImage condition={data?.weather[0].main} />
 
                         {/* Weather details */}
                         <div className='flex flex-col items-center gap-2 text-white'>
@@ -57,15 +57,15 @@ const WeatherPage = () => {
                                 )}
 
                             </h2>
-                            <p className='text-2xl font-semibold'>
-                                {data ? data.weather[0].main : 'Loading...'}
+                            <p className='text-xl font-semibold'>
+                                {data ? data.weather[0].description : 'Loading...'}
                             </p>
                         </div>
 
                     </div>
 
                     {/* 3rd Div: Extra weather information */}
-                    <div className='col-span-1 md:col-span-2 flex w-full items-center justify-between mt-10 text-white'>
+                    <div className='col-span-1 md:col-span-2 flex w-full px-4  items-center justify-between mt-10 text-white'>
                         <div>
                             <Droplets />
                             <p>{data ? `${data.main.humidity}%` : '--%'}</p>

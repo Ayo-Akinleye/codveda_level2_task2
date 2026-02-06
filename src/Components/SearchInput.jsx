@@ -19,9 +19,9 @@ const SearchInput = ({ getWeather }) => {
         >
             <input
                 type="search"
-                placeholder='city, country'
+                placeholder='Enter city'
                 value={name}
-                className='mx-3 font-semibold focus:outline-none focus:text-gray-500 bg-transparent'
+                className='mx-3 font-semibold focus:outline-none bg-transparent'
                 onChange={e => setName(e.target.value)}
             />
             <button type="submit">
