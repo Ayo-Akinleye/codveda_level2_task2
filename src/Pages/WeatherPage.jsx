@@ -32,7 +32,7 @@ const WeatherPage = () => {
     }, [])
 
     useEffect(() => {
-        fetchWeather('London')
+        fetchWeather('Lagos')
     }, [fetchWeather])
     // London weather data loads automatically before user search. useEffect fetchs the weather data when the component mounts(first loads)
 
