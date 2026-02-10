@@ -2,26 +2,38 @@ import BackgroundImg from '../assets/bg-image-1.jpg'
 import SearchInput from '../Components/SearchInput'
 import DisplayDate from '../Components/DisplayDate';
 import { MapPin, Wind, Droplets } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import WeatherImage from '../Components/WeatherImage';
 
 const WeatherPage = () => {
     const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
 
-    const fetchWeather = (cityName) => {
+
+    const fetchWeather = useCallback((cityName) => {
+        setError(null);
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=700d25e4ad4d6a082e14c30f3ed48ce9&units=metric`;
         axios.get(apiUrl)
             .then(res => {
                 console.log(res.data)
                 setData(res.data)
+                setError(null);
             })
-            .catch(err => console.log(err));
-    }
+            .catch(err => {
+                console.log(err)
+                if (err.response && err.response.status === 404) {
+                    setError("City not found. Please try again.")
+                } else {
+                    setError('Something went wrong. Please try again.');
+                }
+                setData(null);
+            });
+    }, [])
 
     useEffect(() => {
         fetchWeather('London')
-    }, [])
+    }, [fetchWeather])
     // London weather data loads automatically before user search. useEffect fetchs the weather data when the component mounts(first loads)
 
     return (
@@ -31,9 +43,13 @@ const WeatherPage = () => {
                 style={{ backgroundImage: `url(${BackgroundImg})` }}
             >
                 <SearchInput getWeather={fetchWeather} />
+                {error && (
+                    <div className='mt-4 bg-red-500/80 text-white px-4 py-2 rounded-lg'>{error}</div>
+                )}
+
 
                 {/* container div */}
-                <div className='flex flex-col mt-6 h-[90%] w-[90%] md:w-[40%] bg-white/30 backdrop-blur-md p-8 rounded-lg text-gray-600 gap-6'>
+                <div className='flex flex-col mt-10 h-[80%] w-[90%] md:w-[40%] bg-white/30 backdrop-blur-md p-8 rounded-lg text-gray-600 gap-6'>
 
                     {/* first div: Location & date */}
                     <div>

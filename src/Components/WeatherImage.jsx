@@ -2,6 +2,7 @@ import sunImg from '../assets/sun-image.png';
 import rainImg from '../assets/Rain image.png';
 import thunderImg from '../assets/Thunderstorm image.png';
 import cloudImg from '../assets/cloud-image2.png';
+import snowImg from '../assets/snow-image.png';
 
 const WeatherImage = ({ condition }) => {
     // Object mapping
@@ -11,6 +12,7 @@ const WeatherImage = ({ condition }) => {
         'rain': rainImg,
         'thunder storm': thunderImg,
         'clouds': cloudImg,
+        'snow': snowImg
     }
 
     const getImage = () => {

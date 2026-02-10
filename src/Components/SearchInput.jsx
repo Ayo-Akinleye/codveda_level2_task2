@@ -13,24 +13,27 @@ const SearchInput = ({ getWeather }) => {
     }
 
     return (
-        <form
-            className="border border-white flex items-center py-1 px-3 rounded-lg text-white"
-            onSubmit={handleCitySearch}
-        >
-            <input
-                type="search"
-                placeholder='Enter city'
-                value={name}
-                className='mx-3 font-semibold focus:outline-none bg-transparent'
-                onChange={e => setName(e.target.value)}
-            />
-            <button type="submit">
-                <Search
-                    size={16}
-                    className="cursor-pointer"
+        <>
+            <form
+                className="border border-white flex items-center py-1 px-3 rounded-lg text-white"
+                onSubmit={handleCitySearch}
+            >
+                <input
+                    type="search"
+                    placeholder='Enter city'
+                    value={name}
+                    className='mx-3 font-semibold focus:outline-none bg-transparent'
+                    onChange={e => setName(e.target.value)}
                 />
-            </button>
-        </form>
+                <button type="submit">
+                    <Search
+                        size={16}
+                        className="cursor-pointer"
+                    />
+                </button>
+            </form>
+        </>
+
     )
 }
 
